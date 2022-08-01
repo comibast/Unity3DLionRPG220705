@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a475473c1a56d4cad413d1de7b274c, type: 3}
+  m_Name: Data NPC
+  m_EditorClassIdentifier: 
+  nameNPC: OZ-1019
+  dataDialogue:
+  - content: "\u7B2C\u4E00\u6BB5\u5C0D\u8A71"
+    sound: {fileID: 8300000, guid: cd1638e4b75b3440f82d67471f7cd20e, type: 3}
+  - content: "\u7B2C\u4E8C\u6BB5\u5C0D\u8A71"
+    sound: {fileID: 8300000, guid: b24ae5c93276c4616856c1f0fb47e615, type: 3}
+  - content: "\u7B2C\u4E09\u6BB5\u5C0D\u8A71"
+    sound: {fileID: 8300000, guid: 8e35deff249024be2a09e9469296f217, type: 3}
