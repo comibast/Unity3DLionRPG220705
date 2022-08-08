@@ -20,21 +20,26 @@ namespace Comibast
         private TextMeshProUGUI textContent;
 
         private AudioSource aud;
-        #endregion
-
+ 
         [SerializeField, Header("三角形")]
         private GameObject goTriangle;
 
-        public DataNPC dataNPC;
+        #endregion
+
+        [SerializeField, Header("淡入間隔")]
+        private float intervalFadeIn = 0.1f;
+        [SerializeField, Header("打字間隔")]
+        private float intervalType = 0.05f;
+
+        public DataNPC dataNpc;
 
         private void Awake()
         {
             aud = GetComponent<AudioSource>();
-            StartCoroutine(FadeIn());
 
-            textName.text = dataNPC.nameNPC;
-            textContent.text = "";                     //先清空對話
+            StartCoroutine(StartDialogue());
         }
+
 
         #region 協同程序教學
         //協同程序需要的
@@ -53,31 +58,59 @@ namespace Comibast
         #endregion
 
         /// <summary>
-        /// 淡入效果
+        /// 開始對話
         /// </summary>
-        private IEnumerator FadeIn()
+        public IEnumerator StartDialogue()
         {
+            textName.text = dataNpc.nameNPC;
+            textContent.text = "";                     //先清空對話
+
+            yield return StartCoroutine(Fade());
+
+            for (int i = 0; i < dataNpc.dataDialogue.Length; i++)
+            {
+                yield return StartCoroutine(TypeEffect(i));
+
+                //如果還沒按，就持續等待
+                while (!Input.GetKeyDown(KeyCode.E))
+                {
+                    yield return null;
+                }
+            }
+            StartCoroutine(Fade(false));
+        }
+
+
+        /// <summary>
+        /// 淡入或淡出效果
+        /// </summary>
+        private IEnumerator Fade(bool fadeIn = true)
+        {
+            // 三元運算子
+            // 布林值 ? 布林值為true : 布林值為 false
+            float increase = fadeIn ? 0.1f : -0.1f;
+            
             for (int i = 0; i < 10; i++)
             {
-                groupDialogue.alpha += 0.1f;
-                yield return new WaitForSeconds(0.1f);
-            }
-            StartCoroutine(TypeEffect());
+                groupDialogue.alpha += increase;
+                yield return new WaitForSeconds(intervalFadeIn);
+            }  
         }
 
         /// <summary>
-        /// 打字效果
+        /// 打字效果，播放對話音效與顯示三角形
         /// </summary>
-        private IEnumerator TypeEffect()
+        private IEnumerator TypeEffect(int indexDialogue)
         {
-            aud.PlayOneShot(dataNPC.dataDialogue[0].sound);
+            textContent.text = "";
+            aud.PlayOneShot(dataNpc.dataDialogue[indexDialogue].sound);
 
-            string content = dataNPC.dataDialogue[0].content;
+            string content = dataNpc.dataDialogue[indexDialogue].content;
 
             for (int i = 0; i < content.Length; i++)
             {
                 textContent.text += content[i];
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(intervalType);
             }
 
             goTriangle.SetActive(true);
