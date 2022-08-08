@@ -63,7 +63,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: "\u958B\u95DC\u52D5\u4F5C"
+    m_ConditionEvent: "\u958B\u95DC\u5C0D\u8A71"
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5153067783611658795}
@@ -88,7 +88,7 @@ AnimatorController:
   m_Name: NPC
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: "\u958B\u95DC\u52D5\u4F5C"
+  - m_Name: "\u958B\u95DC\u5C0D\u8A71"
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: "\u958B\u95DC\u52D5\u4F5C"
+    m_ConditionEvent: "\u958B\u95DC\u5C0D\u8A71"
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4575840729646107365}
@@ -154,6 +154,6 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 50, y: 350, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -5153067783611658795}

@@ -4,6 +4,9 @@ using System.Collections;    //引用 系統 集合 - 資料結構與協同程序
 
 namespace Comibast
 {
+    // 委派簽名 無傳回與無參數
+    public delegate void DelegateFinishDialogue();
+    
     /// <summary>
     /// 對話系統，淡入對話框，更新NPC資料名稱，內容，音效，淡出
     /// </summary>
@@ -24,22 +27,20 @@ namespace Comibast
         [SerializeField, Header("三角形")]
         private GameObject goTriangle;
 
-        #endregion
-
         [SerializeField, Header("淡入間隔")]
         private float intervalFadeIn = 0.1f;
         [SerializeField, Header("打字間隔")]
         private float intervalType = 0.05f;
 
-        public DataNPC dataNpc;
+        private DataNPC dataNPC;
+        #endregion
 
         private void Awake()
         {
             aud = GetComponent<AudioSource>();
 
-            StartCoroutine(StartDialogue());
+            //StartCoroutine(StartDialogue());
         }
-
 
         #region 協同程序教學
         //協同程序需要的
@@ -57,17 +58,25 @@ namespace Comibast
         }
         #endregion
 
+        #region 公開資料與方法
         /// <summary>
-        /// 開始對話
+        /// 是否在對話中
         /// </summary>
-        public IEnumerator StartDialogue()
+        public bool isDialogue;
+
+        /// <summary>
+        /// 開始對話，協同程序
+        /// </summary>
+        public IEnumerator StartDialogue(DataNPC _dataNPC, DelegateFinishDialogue callback)
         {
-            textName.text = dataNpc.nameNPC;
+            isDialogue = true;
+            dataNPC = _dataNPC;
+            textName.text = dataNPC.nameNPC;
             textContent.text = "";                     //先清空對話
 
             yield return StartCoroutine(Fade());
 
-            for (int i = 0; i < dataNpc.dataDialogue.Length; i++)
+            for (int i = 0; i < dataNPC.dataDialogue.Length; i++)
             {
                 yield return StartCoroutine(TypeEffect(i));
 
@@ -78,8 +87,12 @@ namespace Comibast
                 }
             }
             StartCoroutine(Fade(false));
-        }
 
+            isDialogue = false;
+
+            callback();     //執行回乎函式
+        }
+        #endregion
 
         /// <summary>
         /// 淡入或淡出效果
@@ -103,9 +116,9 @@ namespace Comibast
         private IEnumerator TypeEffect(int indexDialogue)
         {
             textContent.text = "";
-            aud.PlayOneShot(dataNpc.dataDialogue[indexDialogue].sound);
+            aud.PlayOneShot(dataNPC.dataDialogue[indexDialogue].sound);
 
-            string content = dataNpc.dataDialogue[indexDialogue].content;
+            string content = dataNPC.dataDialogue[indexDialogue].content;
 
             for (int i = 0; i < content.Length; i++)
             {
