@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a475473c1a56d4cad413d1de7b274c, type: 3}
+  m_Name: "\u72D0\u72F8"
+  m_EditorClassIdentifier: 
+  nameNPC: "\u72D0\u72F8"
+  dataDialogue:
+  - content: "\u5982\u679C\u4F60\u60F3\u8981\u4E00\u500B\u670B\u53CB\uFF0C\u90A3\u5C31\u99B4\u670D\u6211\u5427\uFF01 "
+    sound: {fileID: 8300000, guid: 69c2d5adf37aa55478c75e9b12be75e9, type: 3}
+  - content: "\u61C9\u7576\u975E\u5E38\u8010\u5FC3\u3002\u958B\u59CB\u4F60\u5C31\u9019\u6A23\u5750\u5728\u8349\u53E2\u4E2D\uFF0C\u5750\u5F97\u96E2\u6211\u7A0D\u5FAE\u9060\u4E9B\u3002"
+    sound: {fileID: 8300000, guid: 5eb09fca916934b43adc58a33b7a3b30, type: 3}
+  - content: "\u6211\u7528\u773C\u89D2\u7785\u8457\u4F60\uFF0C\u4F60\u4EC0\u9EBC\u4E5F\u4E0D\u8981\u8AAA\u3002\u8A71\u8A9E\u662F\u8AA4\u6703\u7684\u6839\u6E90\u3002"
+    sound: {fileID: 8300000, guid: 1368bbb3dbafdde47ab58e880ea75e34, type: 3}
+  - content: "\u4F46\u662F\uFF0C\u6BCF\u5929\uFF0C\u4F60\u5750\u5F97\u9760\u6211\u66F4\u8FD1\u4E9B\u2026\u2026"
+    sound: {fileID: 8300000, guid: 6e98150cd820add42b6d6b091bf73e2e, type: 3}
