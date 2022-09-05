@@ -18,14 +18,17 @@ namespace Comibast
         private NavMeshAgent nma;
         private Vector3 v3TargetPosition;
         private string parWalk = "開關走路";
-
+        private string parAttack = "觸發攻擊";
         private float timerIdle;
+        private float timerAttack;
+        private EnemyAttack enemyAttack;
         #endregion
 
         #region 事件
         private void Awake()
         {
             ani = GetComponent<Animator>();
+            enemyAttack = GetComponent<EnemyAttack>();
             nma = GetComponent<NavMeshAgent>();
             nma.speed = dataEnemy.speedWalk;
         }
@@ -112,18 +115,25 @@ namespace Comibast
         /// </summary>
         private void Track()
         {
+            //攻擊時不要滑行
+            if (ani.GetCurrentAnimatorStateInfo(0).IsName("攻擊"))
+            {
+                nma.velocity = Vector3.zero;
+            }
+
             nma.SetDestination(v3TargetPosition);
             ani.SetBool(parWalk, true);
+            ani.ResetTrigger(parAttack);
 
             if (Vector3.Distance(transform.position, v3TargetPosition) <= dataEnemy.rangeAttack)
             {
-                stateEnemy = StateEnemy.Attack;
-                //print("進入攻擊狀態");
+                stateEnemy = StateEnemy.Attack;   //print("進入攻擊狀態");
+            }
+            else
+            {
+                timerAttack = dataEnemy.intervalAttack;
             }
         }
-
-        private float timerAttack;
-        private string parAttack = "觸發攻擊";
 
         /// <summary>
         /// 攻擊
@@ -141,6 +151,8 @@ namespace Comibast
             {
                 ani.SetTrigger(parAttack);
                 timerAttack = 0;
+                enemyAttack.StartAttack();
+                stateEnemy = StateEnemy.Track;
             }
         }
 
@@ -149,14 +161,17 @@ namespace Comibast
         /// </summary>
         private void CheckerTargetInTrackRange()
         {
-            if (stateEnemy == StateEnemy.Attack) return;
-
             Collider[] hits = Physics.OverlapSphere(transform.position, dataEnemy.rangeTrack, dataEnemy.layerTarget);
             if (hits.Length > 0)
             {
                 //print("碰到的物件：" + hits[0].name);
                 v3TargetPosition = hits[0].transform.position;
+                if (stateEnemy == StateEnemy.Attack) return;
                 stateEnemy = StateEnemy.Track;
+            }
+            else //超出範圍恢復遊走狀態
+            {
+                stateEnemy = StateEnemy.Wander;
             }
         }
 
