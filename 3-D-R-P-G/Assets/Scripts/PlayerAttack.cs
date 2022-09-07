@@ -7,14 +7,14 @@ namespace Comibast
     /// </summary>
     public class PlayerAttack : AttackSystem
     {
-        private Animator ani;
+        
         private ThirdPersonController tpc;
 
         private string parAttack = "Ä²µo§ðÀ»";
 
-        private void Awake()
+        protected override void Awake()
         {
-            ani = GetComponent<Animator>();
+            base.Awake();
             tpc = GetComponent<ThirdPersonController>();
         }
 

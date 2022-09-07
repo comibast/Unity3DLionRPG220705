@@ -19,5 +19,5 @@ MonoBehaviour:
   layerTarget:
     serializedVersion: 2
     m_Bits: 8
-  delayAttack: 1
+  delayAttack: 0.3
   animationAttack: {fileID: 7400000, guid: 8254c95c1caa1da4cb1d22972c413dad, type: 3}

@@ -32,7 +32,7 @@ namespace Comibast
             nma = GetComponent<NavMeshAgent>();
             nma.speed = dataEnemy.speedWalk;
         }
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
             Gizmos.color = new Color(0, 1, 0.2f, 0.3f);
             Gizmos.DrawSphere(transform.position, dataEnemy.rangeTrack);
@@ -49,6 +49,14 @@ namespace Comibast
             StateSwitcher();
             CheckerTargetInTrackRange();
         }
+
+        //關閉事件：此類別被關閉時執行一次
+        private void OnDisable()
+        {
+            //nma.Stop();    //綠色蚯蚓：已過時API，建議使用替代方案
+            nma.isStopped = true;
+        }
+
         #endregion
 
         #region 方法

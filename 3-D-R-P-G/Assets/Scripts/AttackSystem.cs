@@ -10,8 +10,16 @@ namespace Comibast
     {
         [SerializeField, Header("攻擊資料")]
         private DataAttack dataAttack;
+        [SerializeField, Header("攻擊動畫名稱")]
+        private string nameAnimation;
 
         protected bool canAttack = true;
+        protected Animator ani;
+
+        protected virtual void Awake()
+        {
+            ani = GetComponent<Animator>();
+        }
 
         //敵人攻擊系統：添加立方體圖示角度旋轉
         private void OnDrawGizmos()
@@ -62,6 +70,8 @@ namespace Comibast
         /// </summary>
         private void CheckAttackArea()
         {
+            if (!ani.GetCurrentAnimatorStateInfo(0).IsName(nameAnimation)) return;
+
             Collider[] hits = Physics.OverlapBox(
                 transform.position +
                 transform.TransformDirection(dataAttack.attackAreaOffset),
@@ -70,7 +80,8 @@ namespace Comibast
 
             if (hits.Length > 0)
             {
-                print(hits[0].name);
+                //print(hits[0].name);    測試用
+                hits[0].GetComponent<HealthSystem>().Hurt(dataAttack.attack);
             }
         }
 

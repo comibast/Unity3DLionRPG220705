@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: 300
   attackAreaColor: {r: 1, g: 0, b: 0, a: 0.5}
-  attackAreaSize: {x: 2.24, y: 2.92, z: 2.07}
-  attackAreaOffset: {x: 0.24, y: 1.55, z: 1.12}
+  attackAreaSize: {x: 3.31, y: 3.52, z: 3.1}
+  attackAreaOffset: {x: 0.01, y: 1.55, z: 1.12}
   layerTarget:
     serializedVersion: 2
     m_Bits: 64
-  delayAttack: 1
+  delayAttack: 0.8
   animationAttack: {fileID: -203655887218126122, guid: 47d520a5ac4cba043943404850a5b092, type: 3}
