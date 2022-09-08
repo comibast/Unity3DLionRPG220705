@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac856ccdb88cf0449106888869c13ea, type: 3}
   m_Name: "Data Health\u73A9\u5BB6"
   m_EditorClassIdentifier: 
-  hp: 1500
+  hp: 2000
   isDropProp: 0
   goProp: {fileID: 0}
   propProbability: 0

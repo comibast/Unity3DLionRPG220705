@@ -32,7 +32,7 @@ namespace Comibast
                 Instantiate(
                     dataHealth.goProp,
                     transform.position + Vector3.up * 3,  //高度
-                    Quaternion.Euler(90, 0, 0));          //角度
+                    Quaternion.Euler(0, 0, 0));          //角度
             }
         }
     }
