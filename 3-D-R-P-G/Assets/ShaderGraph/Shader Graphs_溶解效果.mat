@@ -53,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - DissolveValue: 0.14
+    - DissolveValue: 0.02
     - _: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
@@ -105,7 +105,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - __1: 0
-    - __4: 50
+    - __4: 300
     - __6: 0.2
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}

@@ -150,7 +150,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - DissolveValue: 0.4
+    - DissolveValue: 2.5
     - _: 0
     - _AORemapMax: 1
     - _AORemapMin: 0
@@ -267,7 +267,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - __1: 0
-    - __4: 50
+    - __4: 3000
     - __6: 0.1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

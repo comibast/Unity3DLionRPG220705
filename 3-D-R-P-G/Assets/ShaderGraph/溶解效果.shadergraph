@@ -1306,7 +1306,7 @@
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
-        "y": 1000.0
+        "y": 3000.0
     }
 }
 
@@ -1910,7 +1910,7 @@
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": -2.0,
-        "y": 2.0
+        "y": 2.5
     }
 }
 
@@ -2089,7 +2089,7 @@
         "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
-    "m_DefaultType": 0
+    "m_DefaultType": 3
 }
 
 {
@@ -2959,7 +2959,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_TextureType": 0,
+    "m_TextureType": 1,
     "m_NormalMapSpace": 0,
     "m_EnableGlobalMipBias": true
 }
