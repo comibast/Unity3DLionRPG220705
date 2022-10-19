@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;      //引用編輯器命名空間
+#endif
 
 namespace Comibast
 {
@@ -21,7 +23,8 @@ namespace Comibast
         public float propProbability;
     }
 
-    //自訂編輯器
+#if UNITY_EDITOR
+    //自訂編輯器(類型(要自訂編輯器的類別))
     [CustomEditor(typeof(DataHealth))]
     public class DataHealthEditor : Editor
     {
@@ -53,5 +56,5 @@ namespace Comibast
             serializedObject.ApplyModifiedProperties();
         }
     }
-
+#endif
 }

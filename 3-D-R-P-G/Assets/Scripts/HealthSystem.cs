@@ -11,9 +11,9 @@ namespace Comibast
         [SerializeField, Header("血量資料")]
         protected DataHealth dataHealth;
         [SerializeField, Header("血條")]
-        private Image imgHealth;
+        protected Image imgHealth;
 
-        private float hp;
+        protected float hp;
         private Animator ani;
         private string parHurt = "觸發受傷";
         private string parDead = "開關死亡";

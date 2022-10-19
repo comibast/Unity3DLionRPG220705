@@ -8,7 +8,7 @@ namespace Comibast
     public class NPCSystem : MonoBehaviour
     {
         [SerializeField, Header("NPC 對話資料")]
-        private DataNPC dataNPC;
+        public DataNPC dataNPC;
         [SerializeField, Header("NPC 攝影機")]
         private GameObject goCamera;
 

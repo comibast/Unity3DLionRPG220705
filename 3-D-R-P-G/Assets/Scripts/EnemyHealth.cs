@@ -16,13 +16,39 @@ namespace Comibast
 
         private ObjectPoolGem objectPoolGem;
 
+        public delegate void delegateDead();
+        /// <summary>
+        /// 死亡事件
+        /// </summary
+        public delegateDead onDead;
+
         protected override void Awake()
         {
             base.Awake();
             enemySystem = GetComponent<EnemySystem>();
+
+            //Renderer 為 Skinned Mesh Render 與 Mesh Renderer 的父類別
+            //取得 Renderer 可以適用於模型套用不同元件的狀況
+            //GetComponentsInChildren 取得子物件們的元件，傳回陣列
             matDissolve = GetComponentsInChildren<Renderer>()[0].material;
 
-            objectPoolGem = FindObjectOfType<ObjectPoolGem>();
+            //objectPoolGem = FindObjectOfType<ObjectPoolGem>();
+            objectPoolGem = GameObject.Find("物件池碎片").GetComponent<ObjectPoolGem>();
+        }
+
+        //遊戲物件被隱藏時執行一次
+        private void OnDisable()
+        {
+            
+        }
+
+        //遊戲物件被顯示時執行一次
+        private void OnEnable()
+        {
+            hp = dataHealth.hp;
+            imgHealth.fillAmount = 1;
+            enemySystem.enabled = true;
+            matDissolve.SetFloat(nameDissolve, 2.5f);    //和溶解值最大值一樣
         }
 
         protected override void Dead()
@@ -33,6 +59,9 @@ namespace Comibast
             StartCoroutine(Dissolve());
         }
 
+        /// <summary>
+        /// 溶解效果
+        /// </summary>
         private IEnumerator Dissolve()
         {
             while (maxDissolve > minDisslve)
@@ -41,6 +70,8 @@ namespace Comibast
                 matDissolve.SetFloat(nameDissolve, maxDissolve);
                 yield return new WaitForSeconds(0.03f);
             }
+
+            onDead();
         }
 
 
